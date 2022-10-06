@@ -7,7 +7,7 @@ class Handler implements URLHandler {
 
   public String handleRequest(URI url) {
     if (url.getPath().equals("/")) {
-      String stringList = "";
+      String stringList = "List of strings:\n\n";
 
       for (int idx = 0; idx < size; idx++) {
         stringList += stringPool[idx] + '\n';
@@ -29,6 +29,8 @@ class Handler implements URLHandler {
         }
       }
       else if (url.getPath().contains("/search")) {
+        String parameters[] = url.getQuery().split("=");
+
         if (parameters[0].equals("s")) {
           String query = parameters[1];
           String foundStrings = "Here's what we found for the search term: "
